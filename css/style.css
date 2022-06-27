@@ -7,3 +7,9 @@
 .card{
     margin: 25px;
 }
+
+.card img{
+    margin: auto;
+    width: 171px;
+    height: 162px;
+}
