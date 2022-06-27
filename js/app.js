@@ -44,7 +44,7 @@ function getProductsTemplate(productsData) {
 }
 
 function displayProducts(productsData) {
-    const mainData = document.querySelector('.cards-main')
+    const mainData = document.querySelector('.container')
     const totalProducts = document.getElementById('num-of-products')
     mainData.innerHTML = getProductsTemplate(productsData)
     totalProducts.innerHTML = getTotalProducts(productsData)
