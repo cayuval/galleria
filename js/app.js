@@ -14,12 +14,35 @@ function searchProduct() {
     console.log(searchResult);
     //and then display the objects inside the array
     displayProducts(searchResult)
+
+    
+    //mutlitasking - sorting & searching allowed by giving the sorting functions the array we want to sort and the we can sort the search result array
+    document.getElementById('startFiltering').addEventListener('click', () => {
+        //catching the option Value
+        const userSelect = document.getElementById('selection-bar').value
+        if (userSelect === 'A-Z') {
+            //if its a-z sort in that order
+            sortByName('A-Z',searchResult)
+        } else if (userSelect === 'filter by') {
+            //if the user go back to deafault display the original search result array 
+            displayProducts(searchResult)
+        } else if (userSelect === 'Z-A') {
+            //if its z-a sort in that order
+            sortByName('Z-A',searchResult)
+        } else if (userSelect === 'PRICE (Low-High)') {
+            // if its low to high sort in that order
+            sortByPrice('l-h',searchResult)
+        } else if (userSelect === 'PRICE (High-Low)') {
+            // if its High to Low sort in that order
+            sortByPrice('h-l',searchResult)
+        }
+    })
 }
 
 
-function sortByName(order) {
+function sortByName(order,arrayData) {
     if (order === 'A-Z') {
-        const newProductsArray = [...(products)]
+        const newProductsArray = [...(arrayData)]
         newProductsArray.sort((a, b) => {
             const nameA = a.name.toLowerCase()
             const nameB = b.name.toLowerCase()
@@ -34,7 +57,7 @@ function sortByName(order) {
         })
         displayProducts(newProductsArray)
     } else if (order === 'Z-A') {
-        const newProductsArray = [...(products)]
+        const newProductsArray = [...(arrayData)]
         newProductsArray.sort((a, b) => {
             const nameA = a.name.toLowerCase()
             const nameB = b.name.toLowerCase()
@@ -51,17 +74,19 @@ function sortByName(order) {
 
     }
 }
-
-function sortByPrice(order) {
+//giving the torting fumction order of the sorting & array to sort (in case we want to sort the search result)
+function sortByPrice(order,arrayData) {
+    //if its from low to high sort this way
     if (order === 'l-h') {
-        const newProductsArrayByPrice = [...(products)]
+        const newProductsArrayByPrice = [...(arrayData)]
         console.log(newProductsArrayByPrice);
         newProductsArrayByPrice.sort(function (a, b) {
             return a.price - b.price;
         });
         displayProducts(newProductsArrayByPrice)
+        //if its from high to low sort this way
     } else if (order === 'h-l') {
-        const newProductsArrayByPrice = [...(products)]
+        const newProductsArrayByPrice = [...(arrayData)]
         console.log(newProductsArrayByPrice);
         newProductsArrayByPrice.sort(function (a, b) {
             return b.price - a.price;
@@ -69,25 +94,25 @@ function sortByPrice(order) {
         displayProducts(newProductsArrayByPrice)
     }
 }
-//apply each function with its own parameters in accordance to the sorting method
+//apply each function with its own parameters in accordance to the sorting method,we are giving the original products here because its supose to sort the products without the searchResults
 document.getElementById('startFiltering').addEventListener('click', () => {
     //catching the option Value
     const userSelect = document.getElementById('selection-bar').value
     if (userSelect === 'A-Z') {
         //if its a-z sort in that order
-        sortByName('A-Z')
+        sortByName('A-Z',products)
     } else if (userSelect === 'filter by') {
         //if the user go back to deafault display the original products
         displayProducts(products)
     } else if (userSelect === 'Z-A') {
         //if its z-a sort in that order
-        sortByName('Z-A')
+        sortByName('Z-A',products)
     } else if (userSelect === 'PRICE (Low-High)') {
         // if its low to high sort in that order
-        sortByPrice('l-h')
+        sortByPrice('l-h',products)
     } else if (userSelect === 'PRICE (High-Low)') {
         // if its High to Low sort in that order
-        sortByPrice('h-l')
+        sortByPrice('h-l',products)
     }
 })
 
