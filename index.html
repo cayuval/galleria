@@ -31,13 +31,23 @@
             <input placeholder="search art in Gallery" type="text" name="" id="searchField">
             <input id="searchButton" type="button" value="Search">
         </div>
+        <div class="filter-bar">
+            <select name="" id="selection-bar">
+                <option value="filter by">filter & Sort by</option>
+                <option onclick="sortByName()" id="aToZButton" value="A-Z">A-Z</option>
+                <option value="Z-A">Z-A</option>
+                <option value="PRICE (Low-High)">PRICE(Low-High)</option>
+                <option value="PRICE (High-Low)">PRICE(High-Low)</option>
+            </select>
+            <button id="startFiltering">Filter & Sort</button>
+        </div>
 
             <div class="container row" style="margin: auto;text-align: center;padding: 0;">
             </div>
 
     </main>
 
-    <footer>© 2022Gallery - gallery management</footer>
+    <footer>© 2022 Gallery - gallery management by Yuval Ben Haim ©</footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
         crossorigin="anonymous"></script>

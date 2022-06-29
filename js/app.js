@@ -16,6 +16,74 @@ function searchProduct() {
     displayProducts(searchResult)
 }
 
+function sortByName(order) {
+    if (order === 'A-Z') {
+        const newProductsArray = [...(products)]
+        newProductsArray.sort((a, b) => {
+            const nameA = a.name.toLowerCase()
+            const nameB = b.name.toLowerCase()
+            if (nameA < nameB) {
+                return -1
+            }
+            if (nameA > nameB) {
+                return 1
+            }
+
+            return 0
+        })
+        displayProducts(newProductsArray)
+    } else if (order === 'Z-A') {
+        const newProductsArray = [...(products)]
+        newProductsArray.sort((a, b) => {
+            const nameA = a.name.toLowerCase()
+            const nameB = b.name.toLowerCase()
+            if (nameA > nameB) {
+                return -1
+            }
+            if (nameA < nameB) {
+                return 1
+            }
+
+            return 0
+        })
+        displayProducts(newProductsArray)
+
+    }
+}
+
+function sortByPrice(order){
+    if(order==='l-h'){
+    const newProductsArrayByPrice = [...(products)]
+    console.log(newProductsArrayByPrice);
+    newProductsArrayByPrice.sort(function (a, b) {
+        return a.price - b.price;
+    });
+    displayProducts(newProductsArrayByPrice)
+}else if(order==='h-l'){
+const newProductsArrayByPrice = [...(products)]
+console.log(newProductsArrayByPrice);
+newProductsArrayByPrice.sort(function (a, b) {
+    return b.price - a.price;
+});
+displayProducts(newProductsArrayByPrice)
+}
+}
+
+document.getElementById('startFiltering').addEventListener('click', () => {
+    const userSelect = document.getElementById('selection-bar').value
+    if (userSelect === 'A-Z') {
+        sortByName('A-Z')
+    } else if (userSelect === 'filter by') {
+        displayProducts(products)
+    } else if (userSelect === 'Z-A') {
+        sortByName('Z-A')
+    } else if (userSelect === 'PRICE (Low-High)') {
+         sortByPrice('l-h')
+    } else if (userSelect === 'PRICE (High-Low)') {
+        sortByPrice('h-l')
+    }
+})
+
 //how many pictures do I see every time I reDisplay The Product
 function getTotalProducts(productsData) {
     return `(${productsData.length})`
@@ -35,8 +103,8 @@ function getProductsTemplate(productsData) {
             `<div class="card" style="width: 16rem;">
       <img src="${product.getImg()}" class="card-img-top" alt="${product.getName()}">
       <div class="card-body">
-      <h3 class="card-text">${product.name}</h3>
-      <h4 class="card-text">${product.artist}</h4>
+      <h3 class="card-text">${product.getName()}</h3>
+      <h4 class="card-text">${product.getArtist()}</h4>
       <p class="card-text"> ${product.getPrice()}</p>
       <span style="color: red;" class="card-text">${cardStockHtml}</span>
       </div>
