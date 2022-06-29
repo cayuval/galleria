@@ -16,6 +16,7 @@ function searchProduct() {
     displayProducts(searchResult)
 }
 
+
 function sortByName(order) {
     if (order === 'A-Z') {
         const newProductsArray = [...(products)]
@@ -51,35 +52,41 @@ function sortByName(order) {
     }
 }
 
-function sortByPrice(order){
-    if(order==='l-h'){
-    const newProductsArrayByPrice = [...(products)]
-    console.log(newProductsArrayByPrice);
-    newProductsArrayByPrice.sort(function (a, b) {
-        return a.price - b.price;
-    });
-    displayProducts(newProductsArrayByPrice)
-}else if(order==='h-l'){
-const newProductsArrayByPrice = [...(products)]
-console.log(newProductsArrayByPrice);
-newProductsArrayByPrice.sort(function (a, b) {
-    return b.price - a.price;
-});
-displayProducts(newProductsArrayByPrice)
+function sortByPrice(order) {
+    if (order === 'l-h') {
+        const newProductsArrayByPrice = [...(products)]
+        console.log(newProductsArrayByPrice);
+        newProductsArrayByPrice.sort(function (a, b) {
+            return a.price - b.price;
+        });
+        displayProducts(newProductsArrayByPrice)
+    } else if (order === 'h-l') {
+        const newProductsArrayByPrice = [...(products)]
+        console.log(newProductsArrayByPrice);
+        newProductsArrayByPrice.sort(function (a, b) {
+            return b.price - a.price;
+        });
+        displayProducts(newProductsArrayByPrice)
+    }
 }
-}
-
+//apply each function with its own parameters in accordance to the sorting method
 document.getElementById('startFiltering').addEventListener('click', () => {
+    //catching the option Value
     const userSelect = document.getElementById('selection-bar').value
     if (userSelect === 'A-Z') {
+        //if its a-z sort in that order
         sortByName('A-Z')
     } else if (userSelect === 'filter by') {
+        //if the user go back to deafault display the original products
         displayProducts(products)
     } else if (userSelect === 'Z-A') {
+        //if its z-a sort in that order
         sortByName('Z-A')
     } else if (userSelect === 'PRICE (Low-High)') {
-         sortByPrice('l-h')
+        // if its low to high sort in that order
+        sortByPrice('l-h')
     } else if (userSelect === 'PRICE (High-Low)') {
+        // if its High to Low sort in that order
         sortByPrice('h-l')
     }
 })

@@ -6,6 +6,7 @@
 
 body {
     background-color: rgba(0, 0, 0, 0.354);
+    height: 100vh;
 }
 
 .searchBar {
@@ -21,6 +22,7 @@ body {
     width: 50vw;
     border-radius: 25px;
     margin: 5px;
+    text-align: center;
 }
 
 .searchBar input[type="button"] {
@@ -46,6 +48,7 @@ body {
     width: 50vw;
     border-radius: 25px;
     margin: 5px;
+    text-align: center;
 }
 .filter-bar button{
     height: 100px;
@@ -71,5 +74,5 @@ footer {
     text-align: center;
     background-color: black;
     color: white;
-    line-height: 2;
+    margin-top: 15px;
 }
